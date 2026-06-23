@@ -342,6 +342,7 @@ pd.DataFrame(X_test_lasso).assign(
 
 print("\nSaved: Selected features, Train + Test sets")
 
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 To evaluate whether simple geometric changes in the parotid glands could predict late xerostomia, a benchmark model incorporating weekly parotid gland volume changes (ΔVolume) was developed. Left and right parotid gland volume changes relative to baseline MVCT were calculated and combined with clinical and dosimetric variables.
 
