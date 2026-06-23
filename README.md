@@ -496,7 +496,7 @@ model = Pipeline([
     (
         "logistic",
         LogisticRegression(
-            max_iter=5000,
+            max_iter=10000,
             class_weight="balanced",
             random_state=42
         )
