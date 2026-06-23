@@ -1,18 +1,8 @@
 # RADIOMIC-XEROSOTMIA-PREDICTION
-Temporal Megavoltage Computed Tomography Radiomics for Prediction of Late Xerostomia Following Radiotherapy for Head and Neck Cancer
-Longitudinal Analysis Across Weekly MVCT Scans
-The same radiomics modelling pipeline was independently applied to weekly MVCT datasets acquired during radiotherapy (Weeks 2–7) 6 months, 12 months and 24
-months. Each weekly dataset was analysed using an identical workflow consisting of feature reduction, model training, and validation procedures.
-Feature reduction was performed using a fixed correlation threshold (|ρ| &gt; 0.85), which was consistently applied across all weekly datasets to ensure uniform feature preselection and reduce multicollinearity. 
-Feature selection was performed using an L1-regularised logistic regression model.
-Hyperparameter tuning was conducted independently within each weekly dataset using stratified k-fold cross-validation to identify the optimal regularisation strength.
-The same modelling framework and cross-validation strategy were applied across all weekly datasets. To ensure stability of model estimation while accounting for
-variations in event distribution, a predefined rule was used to select either 5-fold or 10-fold stratified cross-validation based on the number of events in each time point (6 months, 12 months, 24 months) of dataset. This approach ensured methodological consistency across time points while maintaining sufficient training sample sizes within each fold.
-Importantly, all hyperparameter tuning and feature selection were performed exclusively within the training data for each weekly dataset. No information from the
-test set was used during model optimisation, ensuring strict separation between training and evaluation phases.
-Differences in selected features and optimal regularisation parameters across time points reflect inherent variability in radiomic feature distributions and event
-incidence, rather than changes in the modelling strategy.
-For model evaluation, performance was assessed using stratified cross-validation within the training cohort and validated on an independent test set.
+The same radiomics modelling pipeline was independently applied to weekly MVCT datasets acquired during radiotherapy (Weeks 2–7) for the prediction of 6-month, 12-month, and 24-month xerostomia outcomes. Each weekly dataset was analysed using an identical workflow comprising feature reduction, feature selection, model development, and validation.
+Feature reduction was performed using pairwise correlation filtering (|ρ| > 0.85) to reduce multicollinearity. The remaining features were subjected to L1-regularised logistic regression (LASSO) for feature selection and model development, with predictors having absolute coefficients ≥ 0.10 retained for final modelling. Class imbalance was addressed using RandomOverSampler applied exclusively to the training dataset.
+Hyperparameter optimisation was performed using stratified 5-fold or 10-fold cross-validation, depending on endpoint-specific event numbers. All preprocessing, feature reduction, feature selection, oversampling, and hyperparameter optimisation procedures were conducted exclusively within the training dataset to prevent information leakage.
+Model performance was assessed using stratified cross-validation within the training cohort and subsequently evaluated on an independent test cohort. Discriminative performance was quantified using the area under the receiver operating characteristic curve (AUC), with 95% confidence intervals estimated using bootstrap resampling.
 
 import pandas as pd
 import numpy as np
@@ -520,7 +510,9 @@ plt.tight_layout()
 plt.show()
 
 -------------------------------------------------------------------------------------------------------------------------------------
-An exploratory correlation analysis was performed to characterise the temporal association between weekly delta-radiomic features and 6-month, 12-month and 24-month xerostomia. Spearman correlation coefficients were calculated using the training cohort, and the highest-ranking features were visualised using a heatmap.
+An exploratory correlation analysis was performed to characterise temporal associations between weekly delta-radiomic features and xerostomia outcomes at 6, 12, and 24 months. Following a stratified training–testing split, radiomic features were standardised using training-set statistics only.
+Spearman correlation coefficients were calculated between individual radiomic features and the clinical endpoint using the training cohort. To identify stable temporal patterns, a direction-consistency procedure was applied across treatment weeks, whereby weak correlations were treated as noise and the dominant correlation direction was enforced for each feature.
+Features were subsequently ranked according to their mean absolute correlation across treatment weeks, and the highest-ranking features were visualised using heatmaps. This exploratory analysis was intended to facilitate interpretation of temporal radiomic behaviour and was not used for model development or feature selection.
 
 import pandas as pd
 import numpy as np
