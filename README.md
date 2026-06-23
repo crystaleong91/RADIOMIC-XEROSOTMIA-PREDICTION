@@ -32,7 +32,7 @@ import matplotlib.pyplot as plt
 # ============================================================
 # 1. LOAD DATA
 # ============================================================
-file_path = r"C:\Users\philipwyh86\OneDrive\Desktop\LWC personal\MVCT RADIOMIC\1. RETROSPECTIVE -191\MVCT_RETRO ANALYSIS\3. DELTA FEATURES\6M_XER\W1+D1.xlsx"
+file_path = r""
 df = pd.read_excel(file_path)
 
 TARGET = "6M_XEROSTOMIA"
@@ -268,12 +268,6 @@ for bar, coef in zip(bars, selected["Coefficient"]):
 plt.tight_layout()
 plt.show()
 
-# ============================================================
-# 15. SAVE OUTPUTS
-# ============================================================
-
-save_dir = r"C:\Users\philipwyh86\OneDrive\Desktop"
-os.makedirs(save_dir, exist_ok=True)
 
 # ------------------------------------------------------------
 # 1. Selected features + coefficients
@@ -377,7 +371,7 @@ import matplotlib.pyplot as plt
 # LOAD DATA
 # ============================================================
 
-file_path = r"C:\Users\philipwyh86\OneDrive\Desktop\LWC personal\MVCT RADIOMIC\1. RETROSPECTIVE -191\MVCT_RETRO ANALYSIS\3. DELTA FEATURES\VOLUME\6M_G1\B+D1.xlsx"
+file_path = r""
 
 df = pd.read_excel(file_path)
 
@@ -708,7 +702,7 @@ plt.grid(True)
 plt.tight_layout()
 plt.show()
 
-
+-------------------------------------------------------------------------------------------------------------------------------------
 An exploratory correlation analysis was performed to characterise the temporal association between weekly delta-radiomic features and 6-month, 12-month and 24-month xerostomia. Spearman correlation coefficients were calculated using the training cohort, and the highest-ranking features were visualised using a heatmap.
 
 import pandas as pd
@@ -725,7 +719,7 @@ warnings.filterwarnings("ignore")
 # ============================================================
 # 1. LOAD RAW DATA
 # ============================================================
-file_path = r"C:\Users\philipwyh86\OneDrive\Desktop\LWC personal\MVCT RADIOMIC\1. RETROSPECTIVE -191\MVCT_RETRO ANALYSIS\6. MODEL PERFORMANCE\W1-7_HEATMAP_6M.xlsx"
+file_path = r""
 df = pd.read_excel(file_path)
 df.columns = df.columns.str.strip()
 
